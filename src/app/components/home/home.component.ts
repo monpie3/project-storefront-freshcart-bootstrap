@@ -3,7 +3,7 @@ import {
 	Component,
 	ViewEncapsulation,
 } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, shareReplay } from "rxjs";
 import { CategoryModel } from "../../models/category.model";
 import { StoreModel } from "../../models/store.model";
 import { CategoriesService } from "../../services/categories.service";
@@ -18,7 +18,9 @@ import { StoresService } from "../../services/stores.service";
 })
 export class HomeComponent {
 	readonly categories$: Observable<CategoryModel[]> =
-		this._categoriesService.getAll();
+		this._categoriesService.getAll().pipe(
+      shareReplay(1)
+    );
 	readonly stores$: Observable<StoreModel[]> = this._storesService.getAll();
 
 	constructor(
