@@ -21,7 +21,10 @@ export class HomeComponent {
 		this._categoriesService.getAll().pipe(
       shareReplay(1)
     );
-	readonly stores$: Observable<StoreModel[]> = this._storesService.getAll();
+    
+	readonly stores$: Observable<StoreModel[]> = this._storesService.getAll().pipe(
+    shareReplay(1)
+  );
 
 	constructor(
 		private _categoriesService: CategoriesService,
