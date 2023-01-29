@@ -11,6 +11,7 @@ import { CategoriesService } from "../../services/categories.service";
 import { StoresService } from "../../services/stores.service";
 import { StoreTagsService } from "../../services/store-tags.service";
 
+
 @Component({
 	selector: "app-home",
 	templateUrl: "./home.component.html",
@@ -42,5 +43,6 @@ export class HomeComponent {
 		private _categoriesService: CategoriesService,
 		private _storesService: StoresService,
 		private _storeTagsService: StoreTagsService
+
 	) {}
 }
