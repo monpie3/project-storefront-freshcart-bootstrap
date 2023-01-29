@@ -1,15 +1,15 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
-import { CategoryModel } from '../../models/category.model';
-import { StoreModel } from '../../models/store.model';
-import { StoreTagModel } from '../../models/store-tag.model';
-import { ProductModel } from '../../models/product.model';
-import { CategoriesService } from '../../services/categories.service';
-import { StoresService } from '../../services/stores.service';
-import { StoreTagsService } from '../../services/store-tags.service';
-import { ProductsService } from '../../services/products.service';
+import { CategoryModel } from '@app/models/category.model';
+import { StoreModel } from '@app/models/store.model';
+import { StoreTagModel } from '@app/models/store-tag.model';
+import { ProductModel } from '@app/models/product.model';
+import { CategoriesService } from '@app/services/categories.service';
+import { StoresService } from '@app/services/stores.service';
+import { StoreTagsService } from '@app/services/store-tags.service';
+import { ProductsService } from '@app/services/products.service';
 import { Observable, map, reduce, shareReplay, combineLatest, tap } from 'rxjs';
-import { ProductWithCategoryQueryModel } from 'src/app/query-models/product-with-category.query-model';
+import { ProductWithCategoryQueryModel } from '@app/query-models/product-with-category.query-model';
 
 @Component({
   selector: "app-home",

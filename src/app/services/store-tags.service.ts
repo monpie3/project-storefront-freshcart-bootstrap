@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { StoreTagModel } from '../models/store-tag.model';
+import { StoreTagModel } from '@app/models/store-tag.model';
 
 @Injectable({ providedIn: 'root' })
 export class StoreTagsService {

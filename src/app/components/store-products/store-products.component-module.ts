@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { StoreProductsComponent } from './store-products.component';
+import { StoreProductsComponent } from '@app/components/store-products/store-products.component';
 
 @NgModule({
   imports: [],
