@@ -11,6 +11,7 @@ import { ProductsService } from '@app/services/products.service';
 import { Observable, map, reduce, shareReplay, combineLatest, tap } from 'rxjs';
 import { ProductWithCategoryQueryModel } from '@app/query-models/product-with-category.query-model';
 
+
 @Component({
   selector: "app-home",
   templateUrl: "./home.component.html",
@@ -82,4 +83,5 @@ export class HomeComponent {
     private _storesService: StoresService,
     private _storeTagsService: StoreTagsService, private _productsService: ProductsService
   ) { }
+
 }
