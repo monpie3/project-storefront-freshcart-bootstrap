@@ -13,8 +13,8 @@ export class StoresService {
 		);
 	}
 
-	getOne(storeId: string): Observable<StoreModel[]> {
-		return this._httpClient.get<StoreModel[]>(
+	getOne(storeId: string): Observable<StoreModel> {
+		return this._httpClient.get<StoreModel>(
 			`https://6384fca14ce192ac60696c4b.mockapi.io/freshcart-stores/${storeId}`
 		);
 	}

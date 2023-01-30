@@ -1,1 +1,70 @@
-TestS
+<main *ngIf="store | async as store">
+    <section class="mb-lg-14 mb-8 mt-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <div class="d-flex flex-column">
+                        <div>
+                            <img src="{{store.logoUrl}}" alt="{{store.name}}"
+                                class="rounded-circle icon-shape icon-xxl">
+                        </div>
+                        <div class="mt-4">
+                            <h1 class="mb-1 h4">{{store.name}}</h1>
+                            <div class="small text-muted">
+                                <span>It is only {{store.distanceInMeters / 1000 | number: '1.1-1'}} km away from you!
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-9 col-md-8">
+                    <div class="mb-8 bg-light d-lg-flex justify-content-lg-between rounded">
+                        <div class="align-self-center p-8">
+                            <div class="mb-3">
+                                <h5 class="mb-0 fw-bold">{{store.name}}</h5>
+                                <p class="mb-0 text-muted">
+                                    Whatever the occasion, we've got you covered.
+                                </p>
+                            </div>
+                            <div class="position-relative">
+                                <input type="email" class="form-control" id="exampleFormControlInput1"
+                                    placeholder="{{store.name}}">
+                                <span class="position-absolute end-0 top-0 mt-2 me-3">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-search">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="py-4">
+                            <!-- img -->
+                            <img src="assets/images/svg-graphics/store-graphics.svg" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="my-lg-14 my-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-6">
+                    <h3 class="mb-1">{{store.name}} products: </h3>
+                </div>
+
+                <div class="text-center mb-10 col-2" *ngFor="let item of productsByStore$ | async">
+                    <!-- img --> <img src="{{item.imageUrl}}" alt="{{item.name}}" class="card-image rounded-circle">
+                    <!-- text -->
+                    <div class="mt-4">
+                        <h5 class="fs-6 mb-0"> <a class="text-inherit">{{item.name}}</a></h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
