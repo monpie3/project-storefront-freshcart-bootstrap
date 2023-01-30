@@ -53,12 +53,24 @@
 
                     <!-- Product List -->
                     <div class="row g-4 row-cols-1" *ngIf="productsByCategory$ | async as productsByCategory">
-                        <div class="col-12">
-                            <div>
-                                <p class="mb-0"> <span class="text-dark">{{productsByCategory.length}}</span>
-                                    Products found </p>
+                        <div class="d-lg-flex justify-content-between align-items-center">
+                            <div class="mb-3 mb-lg-0">
+                                <div>
+                                    <p class="mb-0"> <span class="text-dark">{{productsByCategory.length}}</span>
+                                        Products found </p>
+                                </div>
                             </div>
+                            <div>
+                                <!-- select option -->
+                                <select id="mySelect" class="form-select" (change)="sort($event.target)">
+                                    <option value="Featured">Sort by: Featured</option>
+                                    <option value="Low to High">Price: Low to High</option>
+                                    <option value="High to Low"> Price: High to Low</option>
+                                    <option value="Avg. Rating"> Avg. Rating</option>
+                                </select></div>
                         </div>
+
+
                         <div class="col" *ngFor="let product of productsByCategory">
                             <!-- card -->
                             <div class="card card-product">
@@ -85,22 +97,25 @@
                                             <div>
                                                 <!-- rating -->
                                                 <small class="text-warning">
-                                                    <i class="bi bi-star-fill" *ngFor="let star of [].constructor(product.ratingValue | round); let i = index"></i>
+                                                    <i class="bi bi-star-fill"
+                                                        *ngFor="let star of [].constructor(product.ratingValue | round); let i = index"></i>
 
                                                     <span *ngIf="(product.ratingValue | round) === product.ratingValue">
-                                                        <i class="bi bi-star" *ngFor="let star of [].constructor(5 - (product.ratingValue | round)); let i = index"></i>
+                                                        <i class="bi bi-star"
+                                                            *ngFor="let star of [].constructor(5 - (product.ratingValue | round)); let i = index"></i>
                                                     </span>
 
-                                                                                    
+
                                                     <span *ngIf="(product.ratingValue | round) !== product.ratingValue">
                                                         <i class="bi bi-star-half"></i>
-                                                        <i class="bi bi-star" *ngFor="let star of [].constructor(4 - (product.ratingValue | round)); let i = index"></i>
+                                                        <i class="bi bi-star"
+                                                            *ngFor="let star of [].constructor(4 - (product.ratingValue | round)); let i = index"></i>
                                                     </span>
 
 
-                                                </small> 
-                                                <span
-                                                    class="text-muted small">  {{product.ratingValue}} ({{product.ratingCount}})</span>
+                                                </small>
+                                                <span class="text-muted small"> {{product.ratingValue}}
+                                                    ({{product.ratingCount}})</span>
                                             </div>
                                             <div class=" mt-6">
                                                 <!-- price -->
