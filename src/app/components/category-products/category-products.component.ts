@@ -45,7 +45,6 @@ export class CategoryProductsComponent {
 				CategoryModel,
 				string
 			]) => {
-				console.log(sortBy);
 				const filteredProducts = products.filter(
 					(product) => product.categoryId === category.id
 				);
@@ -79,7 +78,6 @@ export class CategoryProductsComponent {
 	) {}
 
 	sort(event: any): void {
-		console.log(event.value);
 		this._sortBySubject.next(event.value);
 	}
 
