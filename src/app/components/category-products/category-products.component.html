@@ -16,11 +16,6 @@
                                     aria-controls="categoryFlushOne" *ngFor="let category of categories$ | async">
                                     <a [routerLink]="'/categories/' + category.id" class="nav-link">{{category.name}}<i
                                             class="feather-icon icon-chevron-right"></i></a>
-                                    <!-- accordion collapse -->
-                                    <div id="categoryFlushOne" class="accordion-collapse collapse"
-                                        data-bs-parent="#categoryCollapseMenu">
-                                    </div>
-
                                 </li>
 
 
