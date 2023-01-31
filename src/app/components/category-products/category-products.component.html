@@ -26,10 +26,27 @@
                             <h5 class="mb-3">Price</h5>
 
                             <form [formGroup]="formSearchByPrice">
-                                <input type="search" formControlName="priceFrom"
-                                    placeholder="Price From" class="form-control mb-2">
-                                    <input type="search" formControlName="priceTo"
-                                    placeholder="Price To" class="form-control"></form>
+                                <input type="search" formControlName="priceFrom" placeholder="Price From"
+                                    class="form-control mb-2">
+                                <input type="search" formControlName="priceTo" placeholder="Price To"
+                                    class="form-control"></form>
+                        </div>
+                    </div>
+
+                    <!-- Rating -->
+                    <div class="offcanvas-body ps-lg-2 pt-lg-0">
+                        <div class="mb-8">
+                            <!-- title -->
+                            <h5 class="mb-3">Rating</h5>
+
+                            <div class="form-check mb-2" *ngFor="let star_list of [].constructor(5); let i = index">
+                                <!-- input -->
+                                <input class="form-check-input" type="checkbox" value="{{5-i}}">
+                                <label class="form-check-label" for="{{5-i}}">
+                                    
+                                    <i class="bi bi-star-fill text-warning" *ngFor="let star_ind of [].constructor(5-i)"></i>
+                                </label>
+                            </div>  
                         </div>
                     </div>
 
@@ -141,40 +158,42 @@
                                 </div>
                             </div>
                         </div>
+
+                        <nav *ngIf="productsByCategory.length > 0">
+                            <form [formGroup]="pageForm" class="row g-4 row-cols-2">
+                                <div>
+                                    <div class="col-12">
+                                        <div class="mb-4 mt-4">
+                                            <h6>Limit</h6>
+                                        </div>
+                                    </div>
+    
+                                    <mat-button-toggle-group formControlName="pageSize">
+                                        <mat-button-toggle *ngFor="let item of pageSizeOptions$ | async" [value]="item">
+                                            {{item}}
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </div>
+                                <div>
+                                    <div class="col-12">
+                                        <div class="mb-4 mt-4">
+                                            <h6>Pagination</h6>
+                                        </div>
+                                    </div>
+                                    <mat-button-toggle-group formControlName="pageNumber">
+                                        <mat-button-toggle *ngFor="let item of pageNumberOptions$ | async" [value]="item">
+                                            {{item}}
+                                        </mat-button-toggle>
+                                    </mat-button-toggle-group>
+                                </div>
+                            </form>
+    
+                        </nav>
+
                     </div>
 
 
-                    <nav>
-                        <form [formGroup]="pageForm" class="row g-4 row-cols-2">
-                            <div>
-                                <div class="col-12">
-                                    <div class="mb-4 mt-4">
-                                        <h6>Limit</h6>
-                                    </div>
-                                </div>
-
-                                <mat-button-toggle-group formControlName="pageSize">
-                                    <mat-button-toggle *ngFor="let item of pageSizeOptions$ | async" [value]="item">
-                                        {{item}}
-                                    </mat-button-toggle>
-                                </mat-button-toggle-group>
-                            </div>
-                            <div>
-                                <div class="col-12">
-                                    <div class="mb-4 mt-4">
-                                        <h6>Pagination</h6>
-                                    </div>
-                                </div>
-                                <mat-button-toggle-group formControlName="pageNumber">
-                                    <mat-button-toggle *ngFor="let item of pageNumberOptions$ | async" [value]="item">
-                                        {{item}}
-                                    </mat-button-toggle>
-                                </mat-button-toggle-group>
-                            </div>
-                        </form>
-
-
-                    </nav>
+                   
 
                 </section>
 
