@@ -1,1 +1,65 @@
-TestC
+<main>
+    <div class="mt-8 mb-lg-14 mb-8">
+        <div class="container">
+            <div class="row gx-10">
+
+                <aside class="col-lg-3 col-md-4 mb-6 mb-md-0">
+                    <div class="offcanvas-body ps-lg-2 pt-lg-0">
+                        <div class="mb-8">
+                            <!-- title -->
+                            <h5 class="mb-3">Categories</h5>
+                            <!-- nav -->
+                            <ul class="nav nav-category" id="categoryCollapseMenu">
+
+                                <li class="nav-item border-bottom w-100 collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#categoryFlushOne" aria-expanded="false"
+                                    aria-controls="categoryFlushOne" *ngFor="let category of categories$ | async">
+                                    <a [routerLink]="'/categories/' + category.id" class="nav-link">{{category.name}}<i
+                                            class="feather-icon icon-chevron-right"></i></a>
+                                </li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </aside>
+
+
+                <section class="col-lg-9 col-md-12">
+                    <!-- card -->
+                    <div class="card mb-4 bg-light border-0" *ngIf="category | async as category">
+                        <!-- card body -->
+                        <div class="card-body p-9">
+                            <h2 class="mb-0 fs-1">{{category.name}}</h2>
+                        </div>
+                    </div>
+                    <!-- text -->
+                    <div class="d-lg-flex justify-content-between align-items-center">
+                        <!-- icon -->
+                        <div class="d-md-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+
+                                </div>
+                                <div class="ms-2 d-lg-none">
+                                    <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="offcanvas"
+                                        href="#offcanvasCategory" role="button" aria-controls="offcanvasCategory"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="feather feather-filter me-2">
+                                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                                        </svg> Filters</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+</main>
