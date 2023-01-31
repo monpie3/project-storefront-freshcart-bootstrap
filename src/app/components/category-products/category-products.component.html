@@ -71,7 +71,7 @@
                         </div>
 
 
-                        <div class="col" *ngFor="let product of productsByCategory">
+                        <div class="col" *ngFor="let product of paginatedProducts$ | async">
                             <!-- card -->
                             <div class="card card-product">
                                 <!-- card body -->
@@ -129,9 +129,41 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
+
+      
+                    <nav>
+                       <form [formGroup]="pageForm" class="row g-4 row-cols-2">
+                            <div>
+                                <div class="col-12">
+                                    <div class="mb-4 mt-4">
+                                        <h6>Limit</h6>
+                                    </div>
+                                </div>
+                                
+                                <mat-button-toggle-group formControlName="pageSize">
+                                    <mat-button-toggle *ngFor="let item of pageSizeOptions$ | async" [value]="item" >
+                                        {{item}}
+                                    </mat-button-toggle>
+                                </mat-button-toggle-group>
+                            </div>
+                            <div>
+                                <div class="col-12">
+                                    <div class="mb-4 mt-4">
+                                        <h6>Pagination</h6>
+                                    </div>
+                                </div>
+                                <mat-button-toggle-group  formControlName="pageNumber">
+                                    <mat-button-toggle *ngFor="let item of pageNumberOptions$ | async" [value]="item">
+                                        {{item}}
+                                    </mat-button-toggle>
+                                </mat-button-toggle-group>
+                            </div>
+                        </form>
+
+
+                    </nav>
+
                 </section>
 
 
