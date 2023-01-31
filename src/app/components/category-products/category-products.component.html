@@ -20,6 +20,18 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="offcanvas-body ps-lg-2 pt-lg-0">
+                        <div class="mb-8">
+                            <!-- title -->
+                            <h5 class="mb-3">Price</h5>
+
+                            <form [formGroup]="formSearchByPrice">
+                                <input type="search" formControlName="priceFrom"
+                                    placeholder="Price From" class="form-control mb-2">
+                                    <input type="search" formControlName="priceTo"
+                                    placeholder="Price To" class="form-control"></form>
+                        </div>
+                    </div>
 
                 </aside>
 
@@ -131,18 +143,18 @@
                         </div>
                     </div>
 
-      
+
                     <nav>
-                       <form [formGroup]="pageForm" class="row g-4 row-cols-2">
+                        <form [formGroup]="pageForm" class="row g-4 row-cols-2">
                             <div>
                                 <div class="col-12">
                                     <div class="mb-4 mt-4">
                                         <h6>Limit</h6>
                                     </div>
                                 </div>
-                                
+
                                 <mat-button-toggle-group formControlName="pageSize">
-                                    <mat-button-toggle *ngFor="let item of pageSizeOptions$ | async" [value]="item" >
+                                    <mat-button-toggle *ngFor="let item of pageSizeOptions$ | async" [value]="item">
                                         {{item}}
                                     </mat-button-toggle>
                                 </mat-button-toggle-group>
@@ -153,7 +165,7 @@
                                         <h6>Pagination</h6>
                                     </div>
                                 </div>
-                                <mat-button-toggle-group  formControlName="pageNumber">
+                                <mat-button-toggle-group formControlName="pageNumber">
                                     <mat-button-toggle *ngFor="let item of pageNumberOptions$ | async" [value]="item">
                                         {{item}}
                                     </mat-button-toggle>
@@ -165,8 +177,6 @@
                     </nav>
 
                 </section>
-
-
 
             </div>
         </div>
