@@ -95,7 +95,7 @@ export class CategoryProductsComponent {
     this._productsService.getAll(),
     this.category,
     this.sortBy$,
-    this.searchForm.valueChanges.pipe(startWith({ priceFrom: -1, priceTo: 9999999 })),
+    this.searchForm.valueChanges.pipe(startWith({ priceFrom: -1 })),
   ]).pipe(
     map(
       ([products, category, sortBy, searchValues]: [
