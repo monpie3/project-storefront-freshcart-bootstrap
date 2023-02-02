@@ -25,7 +25,7 @@
                             <!-- title -->
                             <h5 class="mb-3">Price</h5>
 
-                            <form [formGroup]="formSearchByPrice">
+                            <form [formGroup]="searchForm">
                                 <input type="search" formControlName="priceFrom" placeholder="Price From"
                                     class="form-control mb-2">
                                 <input type="search" formControlName="priceTo" placeholder="Price To"
@@ -41,7 +41,7 @@
 
                             <div class="form-check mb-2" *ngFor="let star_list of [].constructor(5); let i = index">
                                 <!-- input -->
-                                <input class="form-check-input" type="checkbox" value="{{5-i}}">
+                                <input class="form-check-input" type="checkbox" value="{{5-i}}"  (change)="onCheckChange($event)">
                                 <label class="form-check-label" for="{{5-i}}">
                                     
                                     <i class="bi bi-star-fill text-warning" *ngFor="let star_ind of [].constructor(5-i)"></i>

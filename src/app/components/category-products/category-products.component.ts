@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { filter, map, startWith, switchMap, tap } from 'rxjs/operators';
 import { CategoryModel } from '@app/models/category.model';
 import { ProductsService } from '@app/services/products.service';
@@ -85,16 +85,17 @@ export class CategoryProductsComponent {
 
 
    //  SEARCH BY PRICE
-   readonly formSearchByPrice: FormGroup = new FormGroup({
+   readonly searchForm: FormGroup = new FormGroup({
     priceFrom: new FormControl(),
     priceTo: new FormControl(),
+    ratingsArray: new FormArray([]),
   });
 
   readonly productsByCategory$: Observable<ProductModel[]> = combineLatest([
     this._productsService.getAll(),
     this.category,
     this.sortBy$,
-    this.formSearchByPrice.valueChanges.pipe(startWith({ priceFrom: -1, priceTo: 9999999 })),
+    this.searchForm.valueChanges.pipe(startWith({ priceFrom: -1, priceTo: 9999999 })),
   ]).pipe(
     map(
       ([products, category, sortBy, searchValues]: [
@@ -104,6 +105,8 @@ export class CategoryProductsComponent {
         SearchParamsQueryModel
       ]) => {
 
+        console.log(searchValues)
+
         const filteredProducts = products.filter(
           (product) => product.categoryId === category.id
         ).filter(
@@ -111,6 +114,10 @@ export class CategoryProductsComponent {
           (!searchValues.priceFrom || product.price >= searchValues.priceFrom)
           &&
           (!searchValues.priceTo || product.price <= searchValues.priceTo)
+          &&
+          (!searchValues.ratingsArray || 
+            searchValues.ratingsArray.length === 0 || 
+            searchValues.ratingsArray.includes(Math.floor(product.ratingValue).toString()))
 				);
         
 
@@ -191,7 +198,6 @@ export class CategoryProductsComponent {
   )
     .pipe(
       tap(([pageNumberOptions, form]) => {
-
         return this._router.navigate([], {
           queryParams: {
             pageSize: form.pageSize,
@@ -202,5 +208,29 @@ export class CategoryProductsComponent {
     )
     .subscribe();
 
+    onCheckChange(event:Event) {
+      const formArray: FormArray = this.searchForm.get('ratingsArray') as FormArray;
+      const eventTarget = event.target as HTMLInputElement
 
+      /* Selected */
+      if(eventTarget.checked){
+        // Add a new control in the arrayForm
+        formArray.push(new FormControl(eventTarget.value));
+      }
+      /* unselected */
+      else{
+        // find the unselected element
+        let i: number = 0;
+    
+        formArray.controls.forEach((ctrl: AbstractControl) => {
+          if(ctrl.value == eventTarget.value) {
+            // Remove the unselected element from the arrayForm
+            formArray.removeAt(i);
+            return;
+          }
+    
+          i++;
+        });
+      }
+    }
 }
